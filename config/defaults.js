@@ -1,0 +1,16 @@
+export default {
+    HEADLESS: true,
+
+    RETRY_COUNT: 3,
+    RETRY_DELAY: 1000,
+
+    NETWORK_RETRY_INTERVAL: 30000,
+    NETWORK_TIMEOUT: 10000,
+
+    TIMEZONE: "Asia/Kolkata",
+
+    ENABLE_SUCCESS_EMAIL: false,
+    ENABLE_SCREENSHOTS: true,
+    ENABLE_STORAGE_STATE: true,
+    ENABLE_HTML_EMAIL: true,
+};

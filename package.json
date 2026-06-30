@@ -1,0 +1,24 @@
+{
+  "name": "naukri-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "health": "node index.js --health"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "luxon": "^3.7.2",
+    "playwright": "^1.61.1",
+    "resend": "^6.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

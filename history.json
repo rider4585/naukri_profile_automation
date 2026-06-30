@@ -1,0 +1,52 @@
+[
+  {
+    "time": "2026-06-29T19:32:04.611Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T19:38:40.831Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T19:46:40.944Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T19:51:52.471Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T20:01:32.129Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T20:06:58.965Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T20:11:02.861Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T20:14:30.385Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T20:17:25.890Z",
+    "slot": "manual",
+    "status": "failed"
+  },
+  {
+    "time": "2026-06-29T20:25:41.616Z",
+    "slot": "manual",
+    "status": "failed"
+  }
+]
