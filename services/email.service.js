@@ -1,24 +1,39 @@
-import {Resend} from "resend";
+import {MailtrapClient} from "mailtrap";
 import config from "./config.service.js";
 import logger from "./logger.service.js";
 
-const resend = new Resend(config.resendApiKey);
+const client = new MailtrapClient({
+    token: config.resendApiKey, // reuse existing env variable
+});
+
+const sender = {
+    email: config.emailFrom,
+    name: "Naukri Profile Update",
+};
+
+const recipients = [
+    {
+        email: config.emailTo,
+    },
+];
 
 export async function sendFailureEmail({account, step, error, url, screenshot}) {
     try {
         logger.info("Sending failure email...");
 
-        await resend.emails.send({
-            from: config.emailFrom,
-            to: config.emailTo,
-            subject: "Naukri Automation Failed",
+        await client.send({
+            from: sender,
+            to: recipients,
+            subject: "❌ Naukri Automation Failed",
+            category: "Failure",
             html: `
-                <h3>Failure Report</h3>
+                <h2>Naukri Automation Failure</h2>
 
-                <p><b>Account:</b> ${account?.name || "unknown"}</p>
-                <p><b>Step:</b> ${step || "unknown"}</p>
-                <p><b>Error:</b> ${error?.message || "unknown error"}</p>
-                <p><b>URL:</b> ${url || "unknown"}</p>
+                <p><b>Account:</b> ${account?.name || account || "Unknown"}</p>
+                <p><b>Step:</b> ${step || "Unknown"}</p>
+                <p><b>Error:</b> ${error?.message || error || "Unknown Error"}</p>
+                <p><b>URL:</b> ${url || "Unknown"}</p>
+                <p><b>Time:</b> ${new Date().toLocaleString()}</p>
 
                 <pre>${error?.stack || ""}</pre>
             `,
@@ -30,25 +45,27 @@ export async function sendFailureEmail({account, step, error, url, screenshot}) 
     }
 }
 
-export async function sendSuccessEmail({account, headline, slot,}) {
+export async function sendSuccessEmail({account, headline, slot}) {
     try {
         logger.info("Sending success email...");
 
-        await resend.emails.send({
-            from: config.emailFrom,
-            to: config.emailTo,
-            subject: `✅ Naukri Update Success - ${account.name}`,
+        await client.send({
+            from: sender,
+            to: recipients,
+            subject: `✅ Naukri Updated - ${account.name}`,
+            category: "Success",
             html: `
-        <h2>Profile Updated Successfully</h2>
+                <h2>Profile Updated Successfully</h2>
 
-        <p><b>Account:</b> ${account.name}</p>
-        <p><b>Slot:</b> ${slot}</p>
-        <p><b>New Headline:</b> ${headline}</p>
-        <p><b>Time:</b> ${new Date().toISOString()}</p>
+                <p><b>Account:</b> ${account.name}</p>
+                <p><b>Slot:</b> ${slot || "Manual Run"}</p>
+                <p><b>Headline:</b> ${headline}</p>
+                <p><b>Time:</b> ${new Date().toLocaleString()}</p>
 
-        <hr />
-        <p>Automation executed successfully without errors.</p>
-      `,
+                <hr>
+
+                <p>Automation completed successfully.</p>
+            `,
         });
 
         logger.info("Success email sent");

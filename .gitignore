@@ -5,3 +5,4 @@ package-lock.json
 screenshots
 .idea
 .DS_Store
+.env
